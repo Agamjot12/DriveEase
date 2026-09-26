@@ -1,0 +1,60 @@
+<div class="login-page">
+  <div class="login-left">
+    <div class="brand">
+      <div class="brand-icon">🚗</div>
+      <h1>Drive<span>Ease</span></h1>
+    </div>
+
+    <div class="hero-content">
+      <h2>Drive your journey.</h2>
+      <p>Manage your vehicles, bookings and customers from one simple dashboard.</p>
+    </div>
+
+    <div class="car-icon">🚘</div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-card">
+      <div class="login-header">
+        <h2>Welcome back</h2>
+        <p>Login to your dashboard</p>
+      </div>
+
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            [(ngModel)]="loginData.email"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="password-label">
+            <label for="password">Password</label>
+          </div>
+
+          <div class="password-input">
+            <input
+              [type]="showPass ? 'text' : 'password'"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              [(ngModel)]="loginData.password"
+            />
+
+            <button type="button" class="show-password" (click)="togglePass()">
+              {{ showPass ? '🙈' : '👁️' }}
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="login-button" (click)="check()">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
