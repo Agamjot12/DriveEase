@@ -1,1 +1,34 @@
-<p>layout works!</p>
+<div class="layout">
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">🚗</div>
+      <h1>Drive<span>Ease</span></h1>
+    </div>
+
+    <div class="nav-links">
+      <button routerLink="/dashboard">Dashboard</button>
+
+      <button routerLink="/bookings">Bookings</button>
+
+      <button routerLink="/vehicles">Vehicles</button>
+
+      <button routerLink="/customers">Customers</button>
+    </div>
+
+    <div class="user-section">
+      <button class="user-button">
+        <span class="user-icon">👤</span>
+        <span>{{ getUserName() }}</span>
+        <span class="arrow">▼</span>
+      </button>
+
+      <div class="user-dropdown">
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -5,6 +5,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { VehicleMaster } from './pages/vehicle-master/vehicle-master';
 import { Booking } from './pages/booking/booking';
 import { CustomerListing } from './pages/customer-listing/customer-listing';
+import { authGuard } from './auth-guard';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {
         path: '',
         component: Layout,
+        canActivate: [authGuard],
         children:[
             {
                 path: 'dashboard',

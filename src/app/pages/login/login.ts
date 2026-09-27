@@ -31,6 +31,7 @@ export class Login {
     console.log(this.loginData);
 
     if(this.loginData.email === this.creds.email && this.loginData.password === this.creds.password){
+      localStorage.setItem('userEmail', this.loginData.email);
       this.router.navigate(['/dashboard']);
     }
     else{
