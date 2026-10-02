@@ -1,1 +1,224 @@
-<p>vehicle-master works!</p>
+<!-- <p>Cars loaded: {{ cars.length }}</p> -->
+
+<div class="vehicle-page">
+  <div class="page-header">
+    <div>
+      <span class="page-label">FLEET MANAGEMENT</span>
+      <h1>Vehicle Master</h1>
+      <p>Keep your fleet details accurate, visible, and ready to move.</p>
+    </div>
+
+    <div class="total-vehicles">
+      <span class="total-count">{{ filteredCars.length }}</span>
+      <span>Total vehicles</span>
+    </div>
+  </div>
+
+  <div class="vehicle-content">
+    <div class="vehicle-list-card">
+      <div class="card-header">
+        <div>
+          <span class="section-label">YOUR FLEET</span>
+
+          <div class="list-title">
+            <h2>Vehicle List</h2>
+          </div>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            placeholder="Search vehicles"
+            (input)="searchCars($any($event.target).value)"
+          />
+        </div>
+      </div>
+
+      <!-- Table/list -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vehicle</th>
+              <th>Registration</th>
+              <th>Year</th>
+              <th>Daily Rate</th>
+              <!-- <th>Status</th> -->
+              <!-- <th></th> -->
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (car of paginatedCars; track car.carId) {
+              <tr>
+                <td>{{ car.carId }}</td>
+
+                <td>
+                  <div class="vehicle-info">
+                    @if (car.carImage) {
+                      <img
+                        class="vehicle-image"
+                        [src]="car.carImage"
+                        [alt]="car.brand + ' ' + car.model"
+                      />
+                    } @else {
+                      <div class="vehicle-image">🚗</div>
+                    }
+
+                    <div>
+                      <strong>{{ car.brand }}</strong>
+                      <span>{{ car.model }} · {{ car.color }}</span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>{{ car.regNo }}</td>
+
+                <td>{{ car.year }}</td>
+
+                <td>
+                  <strong>₹{{ car.dailyRate }}</strong> / day
+                </td>
+
+                <!-- <td>
+                <span class="status available">
+                  <span></span>
+                  Available
+                </span>
+              </td> -->
+
+                <td>
+                  <!-- <button class="action-button">⋮</button> -->
+
+                  <div class="action-buttons">
+                    <button type="button" class="edit-button" (click)="editCar(car)">Edit</button>
+
+                    <button type="button" class="delete-button" (click)="deleteCar(car.carId)">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <app-pagination
+          [totalItems]="filteredCars.length"
+          [itemsPerPage]="itemsPerPage"
+          [(currentPage)]="currentPage"
+        >
+        </app-pagination>
+      </div>
+    </div>
+
+    <!-- New vehicle code  -->
+    <div class="add-vehicle-card">
+      <div class="card-header add-header">
+        <div>
+          <span class="section-label">VEHICLE DETAILS</span>
+          <h2>Add Vehicle</h2>
+        </div>
+
+        <span class="new-entry">NEW ENTRY</span>
+      </div>
+
+      <div class="vehicle-form">
+        <!-- Vehicle Image -->
+        <div class="image-upload">
+          <div class="upload-icon">🚗</div>
+
+          <div class="upload-info">
+            <strong>Vehicle image</strong>
+            <span>JPG or PNG · up to 5MB</span>
+          </div>
+
+          <button type="button" class="upload-button">Upload</button>
+        </div>
+
+        <!-- Brand + Model -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="brand">Brand</label>
+
+            <input
+              type="text"
+              id="brand"
+              name="brand"
+              placeholder="e.g. Toyota"
+              [(ngModel)]="car.brand"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="model">Model</label>
+
+            <input
+              type="text"
+              id="model"
+              name="model"
+              placeholder="e.g. Camry"
+              [(ngModel)]="car.model"
+            />
+          </div>
+        </div>
+
+        <!-- Year + Color -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="year">Year</label>
+
+            <input type="number" id="year" name="year" placeholder="2024" [(ngModel)]="car.year" />
+          </div>
+
+          <div class="form-group">
+            <label for="color">Color</label>
+
+            <input
+              type="text"
+              id="color"
+              name="color"
+              placeholder="e.g. Silver"
+              [(ngModel)]="car.color"
+            />
+          </div>
+        </div>
+
+        <!-- Daily Rate + Registration -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dailyRate">Daily Rate</label>
+
+            <input
+              type="number"
+              id="dailyRate"
+              name="dailyRate"
+              placeholder="e.g. 500"
+              [(ngModel)]="car.dailyRate"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="regNo">Registration No.</label>
+
+            <input
+              type="text"
+              id="regNo"
+              name="regNo"
+              placeholder="e.g. MH 01 AB 1234"
+              [(ngModel)]="car.regNo"
+            />
+          </div>
+        </div>
+
+        <!-- Add Button -->
+        <button type="button" class="add-button" (click)="isEditMode ? updateCar() : insertCar()">
+          {{ isEditMode ? 'Confirm Edit' : 'Add Vehicle' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
