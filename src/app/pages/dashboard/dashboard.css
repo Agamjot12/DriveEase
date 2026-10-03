@@ -1,0 +1,138 @@
+.dashboard-page {
+  min-height: 100%;
+  padding: 30px;
+  background: #f7f7f5;
+}
+
+/* HEADER */
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.page-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #999;
+}
+
+.dashboard-header h1 {
+  margin: 6px 0;
+  font-size: 30px;
+  color: #222;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: #999;
+  font-size: 14px;
+}
+
+/* GRID */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+
+.stat-card {
+  min-height: 170px;
+  padding: 22px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+/* TOP */
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.stat-icon {
+  font-size: 22px;
+}
+
+/* VALUE */
+
+.stat-value {
+  margin-top: auto;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+/* SUBTITLE */
+
+.stat-subtitle {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* CARD COLORS */
+
+.card-teal {
+  background: #55c9c1;
+  color: #123d3a;
+}
+
+.card-pink {
+  background: #e99ac5;
+  color: #54223f;
+}
+
+.card-orange {
+  background: #f3ad68;
+  color: #5b3516;
+}
+
+.card-blue {
+  background: #78aee8;
+  color: #1d3858;
+}
+
+.card-green {
+  background: #8bcf91;
+  color: #234b28;
+}
+
+.card-coral {
+  background: #ef8c7d;
+  color: #55251f;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-page {
+    padding: 15px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

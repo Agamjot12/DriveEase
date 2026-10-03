@@ -1,1 +1,131 @@
-<p>dashboard works!</p>
+<div class="dashboard-page">
+
+  <!-- HEADER -->
+
+  <div class="dashboard-header">
+    <div>
+      <span class="page-label">OVERVIEW</span>
+
+      <h1>Dashboard</h1>
+
+      <p>
+        Here's what's happening with your rental business.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- STAT CARDS -->
+
+  <div class="stats-grid">
+
+    <!-- TOTAL CARS -->
+
+    <div class="stat-card card-teal">
+      <div class="stat-top">
+        <span class="stat-label">TOTAL CARS</span>
+        <span class="stat-icon">🚗</span>
+      </div>
+
+      <strong class="stat-value">
+        {{ dashboardData.totalCars }}
+      </strong>
+
+      <span class="stat-subtitle">
+        Vehicles in your fleet
+      </span>
+    </div>
+
+
+    <!-- TOTAL CUSTOMERS -->
+
+    <div class="stat-card card-pink">
+      <div class="stat-top">
+        <span class="stat-label">TOTAL CUSTOMERS</span>
+        <span class="stat-icon">👥</span>
+      </div>
+
+      <strong class="stat-value">
+        {{ dashboardData.totalCustomers }}
+      </strong>
+
+      <span class="stat-subtitle">
+        Registered customers
+      </span>
+    </div>
+
+
+    <!-- TOTAL BOOKINGS -->
+
+    <div class="stat-card card-orange">
+      <div class="stat-top">
+        <span class="stat-label">TOTAL BOOKINGS</span>
+        <span class="stat-icon">📋</span>
+      </div>
+
+      <strong class="stat-value">
+        {{ dashboardData.totalBookings }}
+      </strong>
+
+      <span class="stat-subtitle">
+        All-time bookings
+      </span>
+    </div>
+
+
+    <!-- TODAY'S BOOKINGS -->
+
+    <div class="stat-card card-blue">
+      <div class="stat-top">
+        <span class="stat-label">TODAY'S BOOKINGS</span>
+        <span class="stat-icon">📅</span>
+      </div>
+
+      <strong class="stat-value">
+        {{ dashboardData.todaysBooking }}
+      </strong>
+
+      <span class="stat-subtitle">
+        Bookings made today
+      </span>
+    </div>
+
+
+    <!-- TODAY'S TOTAL AMOUNT -->
+
+    <div class="stat-card card-green">
+      <div class="stat-top">
+        <span class="stat-label">TODAY'S TOTAL AMOUNT</span>
+        <span class="stat-icon">₹</span>
+      </div>
+
+      <strong class="stat-value">
+        ₹{{ dashboardData.todayTotalAmount }}
+      </strong>
+
+      <span class="stat-subtitle">
+        Revenue generated today
+      </span>
+    </div>
+
+
+    <!-- TOTAL AMOUNT -->
+
+    <div class="stat-card card-coral">
+      <div class="stat-top">
+        <span class="stat-label">TOTAL AMOUNT</span>
+        <span class="stat-icon">💰</span>
+      </div>
+
+      <strong class="stat-value">
+        ₹{{ dashboardData.totalAmount }}
+      </strong>
+
+      <span class="stat-subtitle">
+        Total rental revenue
+      </span>
+    </div>
+
+  </div>
+
+</div>
