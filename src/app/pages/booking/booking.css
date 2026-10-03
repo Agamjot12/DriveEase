@@ -1,0 +1,291 @@
+.booking-page {
+  padding: 30px;
+}
+
+/* PAGE HEADER */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-label,
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+.page-header h1 {
+  margin: 5px 0;
+  font-size: 30px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #777;
+}
+
+/* TOTAL BOOKINGS */
+
+.total-bookings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.total-count {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.total-bookings span:last-child {
+  color: #777;
+  font-size: 13px;
+}
+
+/* MAIN CONTENT */
+
+.booking-content {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* CARDS */
+
+.booking-list-card,
+.add-booking-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* CARD HEADER */
+
+.card-header {
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.card-header h2 {
+  margin: 5px 0 0;
+  font-size: 20px;
+}
+
+/* SEARCH */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 8px 12px;
+  width: 200px;
+}
+
+.search-icon {
+  font-size: 18px;
+  color: #777;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 13px;
+}
+
+/* TABLE */
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 14px 18px;
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+  background: #fafafa;
+  white-space: nowrap;
+}
+
+td {
+  padding: 16px 18px;
+  border-top: 1px solid #eee;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* BOOKING INFO */
+
+.booking-info,
+.customer-info,
+.vehicle-info,
+.amount-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.booking-info strong,
+.customer-info strong,
+.vehicle-info strong,
+.amount-info strong {
+  font-size: 13px;
+}
+
+.booking-info span,
+.customer-info span,
+.vehicle-info span,
+.amount-info span {
+  font-size: 12px;
+  color: #888;
+}
+
+/* FORM */
+
+.booking-form {
+  padding: 22px;
+}
+
+.form-section {
+  margin-bottom: 22px;
+}
+
+.form-section h3 {
+  font-size: 13px;
+  margin: 0 0 14px;
+  color: #555;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input {
+  padding: 10px 11px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  font-size: 13px;
+}
+
+.form-group input:focus {
+  border-color: #999;
+}
+
+/* CREATE BUTTON */
+
+.add-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 7px;
+  background: #222;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.add-button:hover {
+  background: #333;
+}
+
+/* DELETE */
+
+.delete-button {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #f0caca;
+  background: white;
+  color: #d33;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #fff0f0;
+}
+
+/* NEW ENTRY */
+
+.new-entry {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #666;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .booking-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .booking-page {
+    padding: 15px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .search-box {
+    width: 150px;
+  }
+
+  .availability-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #d33;
+  }
+
+  .add-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

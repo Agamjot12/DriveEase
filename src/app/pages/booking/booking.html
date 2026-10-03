@@ -1,1 +1,272 @@
-<p>booking works!</p>
+<div class="booking-page">
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div>
+      <span class="page-label">BOOKING MANAGEMENT</span>
+      <h1>Bookings</h1>
+      <p>Manage vehicle bookings, customers, and rental details.</p>
+    </div>
+
+    <div class="total-bookings">
+      <span class="total-count">{{ bookings.length }}</span>
+      <span>Total bookings</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="booking-content">
+    <!-- BOOKING LIST -->
+    <div class="booking-list-card">
+      <div class="card-header">
+        <div>
+          <span class="section-label">BOOKING RECORDS</span>
+
+          <div class="list-title">
+            <h2>Booking List</h2>
+          </div>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+
+          <input type="text" placeholder="Search bookings" />
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Booking</th>
+              <th>Customer</th>
+              <th>Vehicle</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (booking of paginatedBookings; track booking.bookingId) {
+              <tr>
+                <td>
+                  {{ booking.bookingId }}
+                </td>
+
+                <td>
+                  <div class="booking-info">
+                    <strong>
+                      {{ booking.bookingUid }}
+                    </strong>
+
+                    <span> Booking #{{ booking.bookingId }} </span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="customer-info">
+                    <strong>
+                      {{ booking.customerName }}
+                    </strong>
+
+                    <span>
+                      {{ booking.mobileNo }}
+                    </span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="vehicle-info">
+                    <strong>
+                      {{ booking.brand }}
+                    </strong>
+
+                    <span>
+                      {{ booking.model }}
+                    </span>
+                  </div>
+                </td>
+
+                <td>
+                  {{ booking.bookingDate | date: 'dd MMM yyyy' }}
+                </td>
+
+                <td>
+                  <div class="amount-info">
+                    <strong> ₹{{ booking.totalBillAmount }} </strong>
+
+                    @if (booking.discount > 0) {
+                      <span> ₹{{ booking.discount }} discount </span>
+                    }
+                  </div>
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteBooking(booking.bookingId)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+
+        <app-pagination
+          [totalItems]="bookings.length"
+          [itemsPerPage]="itemsPerPage"
+          [(currentPage)]="currentPage"
+        >
+        </app-pagination>
+      </div>
+    </div>
+
+    <!-- CREATE BOOKING -->
+    <div class="add-booking-card">
+      <div class="card-header add-header">
+        <div>
+          <span class="section-label">BOOKING DETAILS</span>
+          <h2>Create Booking</h2>
+        </div>
+
+        <span class="new-entry"> NEW BOOKING </span>
+      </div>
+
+      <div class="booking-form">
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="form-section">
+          <h3>Customer Details</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="customerName"> Customer Name </label>
+
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                placeholder="e.g. Nithin P"
+                [(ngModel)]="newBooking.CustomerName"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customerCity"> City </label>
+
+              <input
+                type="text"
+                id="customerCity"
+                name="customerCity"
+                placeholder="e.g. Mumbai"
+                [(ngModel)]="newBooking.CustomerCity"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="mobileNo"> Mobile Number </label>
+
+              <input
+                type="text"
+                id="mobileNo"
+                name="mobileNo"
+                placeholder="e.g. 9856478965"
+                [(ngModel)]="newBooking.MobileNo"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email"> Email </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="e.g. nithin@gmail.com"
+                [(ngModel)]="newBooking.Email"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- VEHICLE DETAILS -->
+
+        <select
+          id="car"
+          name="car"
+          [(ngModel)]="newBooking.CarId"
+          (change)="calculateTotal(); checkCarAvailability()"
+        >
+          <option [value]="0">Select a vehicle</option>
+
+          @for (car of cars; track car.carId) {
+            <option [value]="car.carId">
+              {{ car.brand }} {{ car.model }} — ₹{{ car.dailyRate }}/day
+            </option>
+          }
+        </select>
+
+        <!-- BOOKING DETAILS -->
+
+        <div class="form-section">
+          <h3>Booking Details</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookingDate"> Booking Date </label>
+
+              <input
+                type="datetime-local"
+                id="bookingDate"
+                name="bookingDate"
+                [(ngModel)]="newBooking.BookingDate"
+                (change)="checkCarAvailability()"
+              />
+            </div>
+
+            @if (!isCarAvailable) {
+              <span class="availability-error"> This vehicle is already booked on this date. </span>
+            }
+
+            <div class="form-group">
+              <label for="discount"> Discount </label>
+
+              <input
+                type="number"
+                id="discount"
+                name="discount"
+                placeholder="0"
+                [(ngModel)]="newBooking.Discount"
+                (input)="calculateTotal()"
+              />
+            </div>
+          </div>
+
+          <div class="total-amount">
+            <span>Total Amount</span>
+
+            <strong> ₹{{ newBooking.TotalBillAmount }} </strong>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="add-button"
+          [disabled]="!isCarAvailable"
+          (click)="createBooking()"
+        >
+          Create Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

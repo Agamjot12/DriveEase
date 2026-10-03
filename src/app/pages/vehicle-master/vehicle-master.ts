@@ -55,7 +55,7 @@ export class VehicleMaster implements OnInit {
 
   ngOnInit(): void {
     // console.log('Vehicle page loaded');
-
+    this.cdr.detectChanges();
     this.vehicleService.getCars().subscribe((response: any) => {
       // console.log('API response:', response);
       // console.log('Cars:', response.data);
