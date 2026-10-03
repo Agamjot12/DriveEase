@@ -1,1 +1,57 @@
-<p>customer-listing works!</p>
+<div class="customer-page">
+  <div class="page-header">
+    <div>
+      <span class="page-label">CUSTOMER MANAGEMENT</span>
+      <h1>Customers</h1>
+      <p>View and manage your rental customers.</p>
+    </div>
+
+    <div class="total-customers">
+      <span class="total-count">{{ customers.length }}</span>
+      <span>Total customers</span>
+    </div>
+  </div>
+
+  <div class="customer-grid">
+    @for (customer of customers; track customer.customerId) {
+      <div class="customer-card">
+        <div class="customer-card-header">
+          <div class="customer-avatar">
+            {{ customer.customerName.charAt(0) }}
+          </div>
+
+          <div>
+            <h2>{{ customer.customerName }}</h2>
+            <span>Customer #{{ customer.customerId }}</span>
+          </div>
+        </div>
+
+        <div class="customer-details">
+          <div class="detail-item">
+            <span class="detail-label">CITY</span>
+
+            <strong>
+              {{ customer.customerCity }}
+            </strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">MOBILE</span>
+
+            <strong>
+              {{ customer.mobileNo }}
+            </strong>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">EMAIL</span>
+
+            <strong>
+              {{ customer.email }}
+            </strong>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

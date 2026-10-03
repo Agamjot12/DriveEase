@@ -1,0 +1,155 @@
+.customer-page {
+  padding: 30px;
+}
+
+/* HEADER */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+.page-header h1 {
+  margin: 5px 0;
+  font-size: 30px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #777;
+}
+
+/* TOTAL */
+
+.total-customers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.total-count {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.total-customers span:last-child {
+  color: #777;
+  font-size: 13px;
+}
+
+/* CUSTOMER GRID */
+
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+
+.customer-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 20px;
+  transition: 0.2s;
+}
+
+.customer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* CARD HEADER */
+
+.customer-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.customer-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #222;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.customer-card h2 {
+  margin: 0 0 3px;
+  font-size: 17px;
+}
+
+.customer-card-header span {
+  font-size: 11px;
+  color: #888;
+}
+
+/* DETAILS */
+
+.customer-details {
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: #999;
+  font-weight: 600;
+}
+
+.detail-item strong {
+  font-size: 13px;
+  color: #333;
+  word-break: break-word;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .customer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .customer-page {
+    padding: 15px;
+  }
+
+  .customer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    align-items: flex-start;
+  }
+}

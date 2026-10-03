@@ -1,4 +1,17 @@
-import { Service } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
-@Service()
-export class Customer {}
+@Injectable({
+  providedIn: 'root'
+})
+export class Customer {
+
+  private apiUrl = 'https://freeapi.gerasim.in/api/CarRentalApp';
+
+  private http = inject(HttpClient);
+
+  getCustomers() {
+    return this.http.get(this.apiUrl + '/GetCustomers');
+  }
+
+}
